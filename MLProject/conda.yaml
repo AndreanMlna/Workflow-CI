@@ -5,8 +5,8 @@ channels:
 dependencies:
   - python=3.12.7
   - pip
-  - pyarrow
   - pip:
       - mlflow==2.19.0
       - scikit-learn==1.5.2
       - pandas
+      - pyarrow==17.0.0

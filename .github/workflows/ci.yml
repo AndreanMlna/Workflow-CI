@@ -28,7 +28,6 @@ jobs:
     - name: Jalankan Pelatihan Model via MLProject
       run: |
         cd MLProject
-        # Menggunakan env-manager=local untuk mempercepat CI dengan pip yang sudah ada
         mlflow run . --env-manager=local
 
     # SYARAT SKILLED/ADVANCE 1: Menyimpan Artefak ke GitHub
@@ -55,7 +54,7 @@ jobs:
         DOCKER_IMAGE="${{ secrets.DOCKER_USERNAME }}/ecommerce-churn-model:latest"
         
         echo "Membangun Docker Image untuk model (Run ID: $RUN_ID)..."
-        # Perintah wajib dari rubrik: mlflow build-docker 
+        # Tetap gunakan --env-manager conda agar build environment lebih modern
         mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE --env-manager conda
         
         echo "Mengunggah Docker Image ke Docker Hub..."
