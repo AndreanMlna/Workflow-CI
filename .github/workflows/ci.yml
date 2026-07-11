@@ -55,7 +55,7 @@ jobs:
         
         echo "Membangun Docker Image untuk model (Run ID: $RUN_ID)..."
         # Tetap gunakan --env-manager conda agar build environment lebih modern
-        mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE --env-manager conda
+        mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE --env-manager local
         
         echo "Mengunggah Docker Image ke Docker Hub..."
         docker push $DOCKER_IMAGE
