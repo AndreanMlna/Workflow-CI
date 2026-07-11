@@ -15,10 +15,10 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Setup Python 3.12.7
+    - name: Setup Python 3.10.12
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12.7'
+        python-version: '3.10.2'
 
     - name: Install MLflow & Dependencies
       run: |
@@ -55,8 +55,8 @@ jobs:
         DOCKER_IMAGE="${{ secrets.DOCKER_USERNAME }}/ecommerce-churn-model:latest"
         
         echo "Membangun Docker Image untuk model (Run ID: $RUN_ID)..."
-        # Perintah wajib dari rubrik: mlflow build-docker 
-        mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE --env-manager conda
+        # Perintah wajib dari rubrik: mlflow build-docker
+        mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE
         
         echo "Mengunggah Docker Image ke Docker Hub..."
         docker push $DOCKER_IMAGE
