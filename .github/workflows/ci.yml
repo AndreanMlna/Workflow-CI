@@ -55,8 +55,8 @@ jobs:
         DOCKER_IMAGE="${{ secrets.DOCKER_USERNAME }}/ecommerce-churn-model:latest"
         
         echo "Membangun Docker Image untuk model (Run ID: $RUN_ID)..."
-        # Perintah wajib dari rubrik: mlflow build-docker
-        mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE
+        # Perintah wajib dari rubrik: mlflow build-docker 
+        mlflow models build-docker -m "runs:/$RUN_ID/model" -n $DOCKER_IMAGE --env-manager conda
         
         echo "Mengunggah Docker Image ke Docker Hub..."
         docker push $DOCKER_IMAGE
